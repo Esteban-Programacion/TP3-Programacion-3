@@ -7,7 +7,8 @@ btnCargar.addEventListener("click", async () => {
   const respuesta = await fetch("https://jsonplaceholder.typicode.com/todos");
 
   if (!respuesta.ok) {
-    listaTareas.innerHTML = `<li style="color:red;">Error: ${respuesta.status}</li>`;
+    listaTareas.innerHTML = `<li class="error">Error: ${respuesta.status}</li>`;
+
     return;
   }
 

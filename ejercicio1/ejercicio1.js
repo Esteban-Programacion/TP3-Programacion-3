@@ -9,7 +9,7 @@ const validarInputs = () => {
 
   boton.disabled = false;
 
-  if (operacion === "dividir" && (num2 === 0 || num1 === 0)) {
+  if (operacion === "dividir" && (num2 === 0)) {
     boton.disabled = true;
   } else {
     resultado.textContent = "Resultado: ";
@@ -49,5 +49,5 @@ formulario.addEventListener("submit", (e) => {
       break;
   }
 
-  resultado.textContent = `Resultado: ${res}`;
+  document.getElementById("resultado").innerText = "Resultado: " + res;
 });

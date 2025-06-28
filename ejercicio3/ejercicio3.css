@@ -22,3 +22,7 @@
   ul#lista-tareas li {
     margin-bottom: 5px;
   }
+  .error {
+  color: red;
+  font-weight: bold;
+}

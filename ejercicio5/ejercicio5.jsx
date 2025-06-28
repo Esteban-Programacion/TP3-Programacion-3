@@ -5,6 +5,38 @@ function Ejercicio5() {
   const [resultado, setResultado] = React.useState("");
   const [botonDeshabilitado, setBotonDeshabilitado] = React.useState(false);
 
+  function manejarCambioNum1(e) {
+    const valor = e.target.value;
+    setNum1(valor);
+    verificarDivision(valor, num2, operacion);
+    setResultado("");
+  }
+
+  function manejarCambioNum2(e) {
+    const valor = e.target.value;
+    setNum2(valor);
+    verificarDivision(num1, valor, operacion);
+    setResultado("");
+  }
+
+  function manejarCambioOperacion(e) {
+    const valor = e.target.value;
+    setOperacion(valor);
+    verificarDivision(num1, num2, valor);
+    setResultado("");
+  }
+
+  function verificarDivision(n1, n2, operacionActual) {
+    const valor1 = parseFloat(n1);
+    const valor2 = parseFloat(n2);
+
+    if (operacionActual === "dividir" && valor2 === 0) {
+      setBotonDeshabilitado(true);
+    } else {
+      setBotonDeshabilitado(false);
+    }
+  }
+
   function calcular(e) {
     e.preventDefault();
 
@@ -33,45 +65,42 @@ function Ejercicio5() {
         break;
     }
 
-    setResultado(`Resultado: ${res}`);
+    setResultado("Resultado: " + res);
   }
-
-  React.useEffect(() => {
-    const n1 = parseFloat(num1);
-    const n2 = parseFloat(num2);
-
-    if (operacion === "dividir" && (n1 === 0 || n2 === 0)) {
-      setBotonDeshabilitado(true);
-    } else {
-      setBotonDeshabilitado(false);
-    }
-
-    setResultado(""); 
-  }, [num1, num2, operacion]);
 
   return (
     <div>
       <h2>Ejercicio 5</h2>
+      <h3>Ingrese los numeros a calcular</h3>
       <form onSubmit={calcular}>
+        <label htmlFor="numero1">Numero 1 </label>
         <input
+          id="numero1"
           type="number"
           value={num1}
-          onChange={(e) => setNum1(e.target.value)}
+          onChange={manejarCambioNum1}
         />
+        <br /> <br />
+        <label htmlFor="numero2">Numero 2 </label>
         <input
+          id="numero2"
           type="number"
           value={num2}
-          onChange={(e) => setNum2(e.target.value)}
+          onChange={manejarCambioNum2}
         />
+        <br /> <br />
+        <label htmlFor="operacion">Operación </label>
         <select
+          id="operacion"
           value={operacion}
-          onChange={(e) => setOperacion(e.target.value)}
+          onChange={manejarCambioOperacion}
         >
           <option value="sumar">Sumar</option>
           <option value="restar">Restar</option>
           <option value="multiplicar">Multiplicar</option>
           <option value="dividir">Dividir</option>
         </select>
+        <br /> <br />
         <button type="submit" disabled={botonDeshabilitado}>
           Calcular
         </button>

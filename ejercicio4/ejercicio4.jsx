@@ -1,4 +1,4 @@
-function App() {
+function Ejercicio4() {
   const [botonHabilitado, setBotonHabilitado] = React.useState("izquierdo");
 
   return (
