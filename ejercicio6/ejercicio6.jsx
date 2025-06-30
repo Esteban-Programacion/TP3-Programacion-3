@@ -37,18 +37,24 @@ function Ejercicio6() {
     <div>
       <h2>Calculadora de IMC</h2>
       <form onSubmit={calcularIMC}>
+        <label htmlFor="peso">Peso en kg: </label>
         <input
+          id ="peso"
           type="number"
           placeholder="Peso en kg"
           value={peso}
           onChange={(e) => setPeso(e.target.value)}
         />
+        <br /> <br />
+        <label htmlFor="altura">Altura en metros: </label>
         <input
+          id="altura"
           type="number"
           placeholder="Altura en metros"
           value={altura}
           onChange={(e) => setAltura(e.target.value)}
         />
+        <br /> <br />
         <button type="submit">Calcular</button>
       </form>
       {mensaje && <p className={colorClase}>{mensaje}</p>}
